@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wnameth=device-wnameth, initial-scale=1">
+    <title>Leave System</title>
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <script src="{% static 'bootstrap/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery.1.12.4.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery-ui.js' %}"></script>
+
+</head>
+
+<body>
+
+<div class="container"><!-- parent container-->
+{{ username }}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center" style="margin-top:30%;background-color:lightgray;padding:20px 30px 30px 30px;border-radius:5px">
+            <label style="font-size:18px;padding-bottom:10px">Log Leave Request</label><br>
+            <label style="color:red">{{ message }}</label>
+            <form name="leaveRequest" method="post" action="{% url 'logLeaveRequest'  %}">{% csrf_token %}
+                <label>From:</label>
+
+                <select name="startDay">
+                    <option selected disabled>Day</option>
+                    {% for day in calender.day %}
+                        <option value="{{ day }}">{{ day }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="startMonth">
+                    <option selected disabled>Month</option>
+                    {% for month in calender.month %}
+                        <option value="{{ month }}">{{ month }}</option>
+                    {% endfor %}
+                </select>
+
+                <select name="startYear">
+                    <option selected disabled>Year</option>
+                    {% for year in calender.year %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Until:</label>
+                <select name="endDay">
+                    <option selected disabled>Day</option>
+                    {% for day in calender.day %}
+                        <option value="{{ day }}">{{ day }}</option>
+                    {% endfor %}
+                </select>
+                <select name="endMonth">
+                    <option selected disabled>Month</option>
+                    {% for month in calender.month %}
+                        <option value="{{ month }}">{{ month }}</option>
+                    {% endfor %}
+                </select>
+
+                 <select name="endYear">
+                    <option selected disabled>Year</option>
+                    {% for year in calender.year %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select><br>
+                <input type="text" name="username" value="{{ username }}" hidden>
+
+                <input class="bg-primary" type="submit" value="Submit Leave Request" style="padding:5px 10px 5px 10px;margin-top:15px">
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</div>
+
+
+
+</body>
+
+</html>

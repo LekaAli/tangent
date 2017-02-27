@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leave System</title>
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <script src="{% static 'bootstrap/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery.1.12.4.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery-ui.js' %}"></script>
+
+</head>
+
+<body>
+
+<div class="container"><!-- parent container-->
+{{ username }}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center" style="margin-top:30%;background-color:lightgray;padding:40px 30px 30px 30px;border-radius:5px">
+            <label>Remaining Leave Days:{{ checkRemainingLeaveDays }} </label>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div>
+
+
+
+</body>
+
+</html>
