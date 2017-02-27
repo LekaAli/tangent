@@ -33,14 +33,14 @@ def leaves(request):
                 errorMsg = {'message': 'invalid username or password'}
                 return render(request, 'html/index.html',errorMsg)
 
-def remainigLeaves(request):
+def remainingLeaves(request):
 
     if request.method == "GET":
 
         username = request.GET.get('username')
-        employeeDB = Employee.objects.get(username="alfred")
+        employeeDB = Employee.objects.get(username=username)
         remainigDays = employeeDB.remainingLeaveDays
-        values = {'remain':remainigDays,'user':username}
+        values = {'remain':remainigDays,'username':username}
         return render(request,'html/checkRemainingLeaveDays.html',values)
 
 
@@ -51,7 +51,7 @@ def leaveRequest(request):
 
         sDay = request.POST.get('startDay')
         sMonth = request.POST.get('startMonth')
-        sYear = request.POST.get('startMonth')
+        sYear = request.POST.get('startYear')
 
         eDay = request.POST.get('endDay')
         eMonth = request.POST.get('endMonth')
@@ -76,9 +76,8 @@ def leaveRequest(request):
             weekdays = addLeave(request,start_date, end_date)
 
             #assign leave days to the employee
-            employeeDB = Employee.objects.get(username="alfred")
+            employeeDB = Employee.objects.get(username=user)
             employeeStartDate = employeeDB.startDate
-            employeeStartDate = date(2016,01,04)
 
 
             currentLeaveRequestDate = date.today() #leave application day
@@ -87,24 +86,24 @@ def leaveRequest(request):
 
             if (int(employeeDaysSinceAppointment) > 0 and int(employeeDaysSinceAppointment) > weekdays):
 
-                leaveDB = Leave(username="alfred",startDate=start_date, endDate=end_date, daysOfLeave=weekdays, status="Approved")
+                leaveDB = Leave(username=user,startDate=start_date, endDate=end_date, daysOfLeave=weekdays, status="Approved")
                 leaveDB.save()
 
-                employeeDB.RemainingLeaveDays = int(employeeDaysSinceAppointment) - int(weekdays)
+                employeeDB.remainingLeaveDays = (int(employeeDaysSinceAppointment) - int(weekdays))
                 employeeDB.save()
 
                 leaveStatus = {'status': 'Approved', 'other': employeeDaysSinceAppointment, 'week': weekdays}
                 return render(request, 'html/leaveStatus.html',leaveStatus)
             else:
 
-                leaveDB = Leave(username="alfred",startDate=start_date, endDate=end_date, daysOfLeave=weekdays, status="New")
+                leaveDB = Leave(username=user,startDate=start_date, endDate=end_date, daysOfLeave=weekdays, status="New")
                 leaveDB.save()
-                employeeDB.RemainingLeaveDays = employeeDaysSinceAppointment
+                employeeDB.remainingLeaveDays = employeeDaysSinceAppointment
                 employeeDB.save()
                 leaveStatus = {'status': 'Declined','other':employeeDaysSinceAppointment,'week':weekdays}
                 return render(request, 'html/leaveStatus.html', leaveStatus)
     else:
-        username =  request.POST.get('username')
+        username =  request.GET.get('username')
         dateInfo = {}
         dateInfo['day'] = range(1, 31)
         dateInfo['month'] = range(1, 13)

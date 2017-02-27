@@ -19,7 +19,6 @@
 <body>
 
 <div class="container"><!-- parent container-->
-{{ username }}
     <div class="row">
         <div class="row">
             <div class="col-md-3">
@@ -27,10 +26,10 @@
             </div>
             <div class="col-md-6" style="margin:30% 0% 0% 10%;">
                 <div class="row">
-                    <a class="btn" style="background-color:lightgray;padding:20px 60px 20px 60px;color:blue;text-align:center;font-size:15px;border:1px solid black;margin:1px;cursor:pointer" href="/leave/checkRemainingLeave?username={{ username }}">Check Remaining Leave Days</a>
+                    <a class="btn" style="background-color:lightgray;padding:20px 60px 20px 60px;color:blue;text-align:center;font-size:15px;border:1px solid black;margin:1px;cursor:pointer" href="/leave/remainingLeaves?username={{ username }}">Check Remaining Leave Days</a>
                 </div>
                 <div class="row">
-                    <a class="btn" style="background-color:lightgray;padding:20px 96px 20px 96px;color:blue;text-align:center;font-size:15px;border:1px solid black;margin:1px;cursor:pointer" href="/leave/logLeaveRequest?username={{ username }}">Log Leave Request</a>
+                    <a class="btn" style="background-color:lightgray;padding:20px 96px 20px 96px;color:blue;text-align:center;font-size:15px;border:1px solid black;margin:1px;cursor:pointer" href="/leave/leaveRequest?username={{ username }}">Log Leave Request</a>
                 </div>
             </div>
 

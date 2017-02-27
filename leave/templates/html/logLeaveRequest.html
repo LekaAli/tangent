@@ -19,13 +19,12 @@
 <body>
 
 <div class="container"><!-- parent container-->
-{{ username }}
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8 text-center" style="margin-top:30%;background-color:lightgray;padding:20px 30px 30px 30px;border-radius:5px">
             <label style="font-size:18px;padding-bottom:10px">Log Leave Request</label><br>
             <label style="color:red">{{ message }}</label>
-            <form name="leaveRequest" method="post" action="{% url 'logLeaveRequest'  %}">{% csrf_token %}
+            <form name="leaveRequest" method="post" action="{% url 'leaveRequest'  %}">{% csrf_token %}
                 <label>From:</label>
 
                 <select name="startDay">

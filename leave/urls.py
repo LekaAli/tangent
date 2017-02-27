@@ -20,6 +20,6 @@ from . import views
 urlpatterns = [
     url(r'^$',views.index),
     url(r'leaves/',views.leaves,name="leaves"),
-    url(r'checkRemainingLeave/',views.remainigLeaves,name="checkRemainingLeave"),
-    url(r'logLeaveRequest/',views.leaveRequest,name="logLeaveRequest")
+    url(r'remainingLeaves/',views.remainingLeaves,name="remainingLeaves"),
+    url(r'leaveRequest/',views.leaveRequest,name="leaveRequest"),
 ]
